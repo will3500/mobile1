@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".vagasDetalhes"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E0FAFF"
+        android:gravity="center"
+
+        android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logounaerp" />
+
+    <TextView
+        android:id="@+id/tvAreaConhecimento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="Área de conhecimento"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tvDescricao"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:textAlignment="textStart"
+        android:paddingTop="12dp"
+        android:layout_below="@id/tvAreaConhecimento"
+        android:text="Descrição da vaga"
+        android:textSize="18sp" />
+
+
+
+
+            <TextView
+                android:id="@+id/tvLocal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:layout_below="@id/tvDescricao"
+                android:text="Local" />
+
+            <TextView
+                android:id="@+id/tvSalario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:layout_below="@id/tvLocal"
+                android:text="Salário"/>
+
+
+
+    <TextView
+        android:id="@+id/tvTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvSalario"
+        android:text="Telefone"
+        android:textAlignment="textStart"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvAnunciante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTelefone"
+        android:text="Anunciante"
+        android:textAlignment="textStart"
+        android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutBotoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/tvAnunciante"
+            android:layout_marginTop="42dp"
+            android:layout_centerHorizontal="true">
+
+
+
+
+            <Button
+                android:id="@+id/buttonVoltar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Voltar"
+                app:backgroundTint="@null"
+                android:textColor="#FFFFFF"
+                android:background="#2A8598"
+                android:layout_weight="1"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="20dp"/>
+
+            <Button
+                android:id="@+id/buttonLigar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Ligar"
+                app:backgroundTint="@null"
+                android:textColor="#FFFFFF"
+                android:background="#2A8598"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

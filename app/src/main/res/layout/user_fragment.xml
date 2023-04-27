@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#E0FAFF"
+    android:layout_height="match_parent">
+
+
+    <!-- Botão de Logout -->
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@null"
+        android:background="#2A8598"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
+    <!-- Campo de texto "Nome" abaixo da foto -->
+    <TextView
+        android:id="@+id/tv_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/img_foto"
+        android:layout_marginTop="16dp"/>
+
+
+
+
+    <!-- Foto redonda no centro -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_foto"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/camera"
+        />
+
+
+</RelativeLayout>

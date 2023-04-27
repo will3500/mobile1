@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:layout_margin="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/imgContact"
+        android:layout_width="64dp"
+        android:background="@color/black"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvVagaName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/imgContact"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="18sp"
+        android:text="Vaga"
+        android:maxLength="50"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/tvDescription1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tvVagaName"
+        app:layout_constraintTop_toBottomOf="@id/tvVagaName"
+        android:maxLength="35"
+        android:text="Description 1"/>
+
+
+    <TextView
+        android:id="@+id/tvDescription2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tvVagaName"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription1"
+        android:maxLength="10"
+        android:text="dd/ww/yyyy"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
