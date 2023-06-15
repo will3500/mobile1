@@ -17,6 +17,9 @@
                 <item
                     android:id="@+id/filter_knowledge_area"
                     android:title="Área de conhecimento"/>
+                <item
+                    android:id="@+id/filter_salario"
+                    android:title="Área de conhecimento"/>
 
             </group>
         </menu>

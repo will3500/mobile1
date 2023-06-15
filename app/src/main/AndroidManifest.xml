@@ -29,7 +29,8 @@
         <activity android:name=".CadastroActivity"/>
         <activity android:name=".appprincipal"/>
         <activity android:name=".vagasDetalhes"/>
-
+        <activity android:name=".alterarDadosActivity"/>
+        <activity android:name=".recuperarActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.mobile1.fileprovider"

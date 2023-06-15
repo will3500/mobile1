@@ -18,6 +18,18 @@
         android:background="#2A8598"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"/>
+    <Button
+        android:id="@+id/btn_conta"
+        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conta"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@null"
+        android:background="#2A8598"
+        android:layout_above="@id/btn_logout"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="false"/>
 
     <!-- Campo de texto "Nome" abaixo da foto -->
     <TextView

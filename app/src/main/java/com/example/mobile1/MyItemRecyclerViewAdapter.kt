@@ -1,5 +1,6 @@
 package com.example.mobile1
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.example.mobile1.placeholder.Vagas
 class MyItemRecyclerViewAdapter(
     private val vagastList: List<Vagas>,
     private val onItemClickListener: (Vagas) -> Unit,
+    private val onItemLongClickListener: (Vagas) -> Unit
 ) :
     RecyclerView.Adapter<MyItemRecyclerViewAdapter.ContactViewHolder>() {
 
@@ -25,9 +27,18 @@ class MyItemRecyclerViewAdapter(
         fun setInfo(contactName: Int) {
             val imgContact: ImageView = itemView.findViewById(R.id.imgContact)
             val tvrvVagasName: TextView = itemView.findViewById(R.id.tvVagaName)
+            val tvrvSalario: TextView = itemView.findViewById(R.id.tvDescription1)
+            val tvrvLocal: TextView = itemView.findViewById(R.id.tvDescription2)
+            Log.e("TAG", vagastList.toString())
             tvrvVagasName.text = vagastList.get(contactName).areaConhecimento
+            tvrvSalario.text ="Salario: " +  vagastList.get(contactName).salario.toString();
+            tvrvLocal.text = "Local: " + vagastList.get(contactName).local
             itemView.setOnClickListener {
                 onItemClickListener(vagastList.get(contactName))
+            }
+            itemView.setOnLongClickListener {
+                onItemLongClickListener(vagastList.get(contactName))
+                true // Indica que o evento foi consumido
             }
         }
     }
@@ -42,7 +53,9 @@ class MyItemRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        holder.setInfo(vagastList[position].id)
+       holder.setInfo(position)
     }
+
+
 
 }

@@ -71,14 +71,7 @@
         android:textAlignment="textStart"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/tvAnunciante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvTelefone"
-        android:text="Anunciante"
-        android:textAlignment="textStart"
-        android:textSize="18sp" />
+
 
 
         <LinearLayout
@@ -86,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/tvAnunciante"
+            android:layout_below="@+id/tvTelefone"
             android:layout_marginTop="42dp"
             android:layout_centerHorizontal="true">
 

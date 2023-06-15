@@ -88,6 +88,17 @@
             android:layout_below="@+id/buttonEntrar"
             android:layout_marginTop="32dp"
             android:layout_centerHorizontal="true"/>
+        <Button
+            android:id="@+id/buttonRecuperar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recuperar senha"
+            android:textColor="#2A8598"
+            android:textSize="20sp"
+            android:textStyle=""
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/buttonCadastro"
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

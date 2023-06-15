@@ -93,31 +93,7 @@ tools:context=".CadastroVagasFragment">
         android:layout_height="wrap_content"
         android:inputType="phone" />
 
-    <TextView
-        android:id="@+id/txt_anunciante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Anunciante (opcional)" />
 
-    <RadioGroup
-        android:id="@+id/radio_group_anunciante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radio_anunciante_sim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sim" />
-
-        <RadioButton
-            android:id="@+id/radio_anunciante_nao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Não" />
-
-    </RadioGroup>
 
 
     <TextView

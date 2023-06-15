@@ -1,16 +1,23 @@
 package com.example.mobile1.placeholder;
 
 public class Vagas {
+
     private int id;
     private String areaConhecimento;
     private String descricao;
-    private float salario;
+    private String salario;
     private String local;
     private String email;
     private String telefone;
     private String anunciante;
 
-    public Vagas(int id, String areaConhecimento, String descricao, float salario, String local, String email, String telefone, String anunciante) {
+    private String dataInicio;
+
+    private String dataFim;
+
+    public boolean ativo;
+
+    public Vagas(int id, String areaConhecimento, String descricao, String salario, String local, String email, String telefone,String dataInicio,String dataFim, String anunciante, boolean ativo) {
         this.id = id;
         this.areaConhecimento = areaConhecimento;
         this.descricao = descricao;
@@ -19,6 +26,12 @@ public class Vagas {
         this.email = email;
         this.telefone = telefone;
         this.anunciante = anunciante;
+        this.dataFim = dataFim;
+        this.dataInicio = dataInicio;
+        this.ativo = ativo;
+    }
+    public Vagas() {
+        // Construtor vazio
     }
 
     public int getId() {
@@ -27,6 +40,30 @@ public class Vagas {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public String getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(String dataFim) {
+        this.dataFim = dataFim;
     }
 
     public String getAreaConhecimento() {
@@ -45,11 +82,11 @@ public class Vagas {
         this.descricao = descricao;
     }
 
-    public float getSalario() {
+    public String getSalario() {
         return salario;
     }
 
-    public void setSalario(float salario) {
+    public void setSalario(String salario) {
         this.salario = salario;
     }
 
@@ -88,7 +125,7 @@ public class Vagas {
     @Override
     public String toString() {
         return "Vagas{" +
-                "id=" + id +
+
                 ", areaConhecimento='" + areaConhecimento + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", salario=" + salario +

@@ -13,7 +13,7 @@ public class vagasDetalhes extends AppCompatActivity {
 
     private ImageView imageView;
     private String telefone;
-    private TextView tvAreaConhecimento, tvDescricao, tvLocal, tvSalario, tvTelefone, tvAnunciante, buttonLigar, buttonVoltar;
+    private TextView tvAreaConhecimento, tvDescricao, tvLocal, tvSalario, tvTelefone, buttonLigar, buttonVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,6 @@ public class vagasDetalhes extends AppCompatActivity {
         tvLocal = findViewById(R.id.tvLocal);
         tvSalario = findViewById(R.id.tvSalario);
         tvTelefone = findViewById(R.id.tvTelefone);
-        tvAnunciante = findViewById(R.id.tvAnunciante);
         buttonLigar = findViewById(R.id.buttonLigar);
         buttonVoltar = findViewById(R.id.buttonVoltar);
 
@@ -46,7 +45,7 @@ public class vagasDetalhes extends AppCompatActivity {
             tvLocal.setText("Local: " + local);
             tvSalario.setText("Salario: "+salario);
             tvTelefone.setText("Telefone: "+telefone.toString());
-            tvAnunciante.setText("Anunciante: "+anunciante);
+           // tvAnunciante.setText("Anunciante: "+anunciante);
         }
 
         // Definindo listener para o botão voltar

@@ -23,6 +23,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.File;
 
 public class UserFragment extends Fragment {
@@ -30,6 +32,8 @@ public class UserFragment extends Fragment {
     private Button btnLogout;
     private ImageView imgFoto;
     private File photoFile;
+
+    private Button btnConta;
 
     private ActivityResultLauncher<Uri> cameraLauncher;
 
@@ -42,15 +46,21 @@ public class UserFragment extends Fragment {
 
         btnLogout = view.findViewById(R.id.btn_logout);
         imgFoto = view.findViewById(R.id.img_foto);
+        btnConta = view.findViewById(R.id.btn_conta);
 
         // Configura o clique do botão de logout
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Implemente aqui a lógica para efetuar logout do usuário
-                // ...
+                FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+
+                getActivity().finish();
             }
         });
+
 
         // Configura o clique da imagem de foto
         imgFoto.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +85,14 @@ public class UserFragment extends Fragment {
                 imgFoto.setImageBitmap(bitmap);
             } else {
                 // O usuário cancelou a captura da imagem
+            }
+        });
+
+        btnConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), alterarDadosActivity.class);
+                startActivity(intent);
             }
         });
 

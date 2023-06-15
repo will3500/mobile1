@@ -1,6 +1,8 @@
 package com.example.mobile1;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +11,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import com.example.mobile1.placeholder.Vagas;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CadastroVagasFragment extends Fragment {
 
     private EditText edtArea, edtDescricao, edtRemuneracao, edtLocalidade, edtEmail, edtTelefone, edtDataInicio, edtDataFim;
-    private RadioGroup radioGroupAnunciante;
-    private RadioButton radioAnuncianteSim, radioAnuncianteNao;
+
     private Button btnLimpar, btnCadastrar;
 
     @Override
@@ -31,9 +44,7 @@ public class CadastroVagasFragment extends Fragment {
         edtDataInicio = view.findViewById(R.id.edt_data_inicio);
         edtDataFim = view.findViewById(R.id.edt_data_fim);
 
-        radioGroupAnunciante = view.findViewById(R.id.radio_group_anunciante);
-        radioAnuncianteSim = view.findViewById(R.id.radio_anunciante_sim);
-        radioAnuncianteNao = view.findViewById(R.id.radio_anunciante_nao);
+
 
         btnLimpar = view.findViewById(R.id.btn_limpar);
         btnCadastrar = view.findViewById(R.id.btn_cadastrar);
@@ -42,13 +53,16 @@ public class CadastroVagasFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 limparCampos();
+
             }
         });
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 cadastrarVaga();
+
             }
         });
 
@@ -64,7 +78,6 @@ public class CadastroVagasFragment extends Fragment {
         edtTelefone.setText("");
         edtDataInicio.setText("");
         edtDataFim.setText("");
-        radioGroupAnunciante.clearCheck();
     }
 
     private void cadastrarVaga() {
@@ -76,11 +89,58 @@ public class CadastroVagasFragment extends Fragment {
         String telefone = edtTelefone.getText().toString();
         String dataInicio = edtDataInicio.getText().toString();
         String dataFim = edtDataFim.getText().toString();
-        boolean anunciante = radioAnuncianteSim.isChecked();
+        String anuncianteUid = "";
 
-        // Aqui você pode realizar a lógica de cadastro da vaga
-        // para o backend
-
+        if (area.isEmpty() || descricao.isEmpty() || remuneracao.isEmpty() || localidade.isEmpty() || email.isEmpty() || telefone.isEmpty() || dataInicio.isEmpty() || dataFim.isEmpty()) {
+            Toast.makeText(requireContext(), "preencha todos os campos", Toast.LENGTH_SHORT).show();
+        }else{
+            cadastrarVagaFirebase(area,descricao,remuneracao,localidade,email,telefone,dataInicio,dataFim);
+        }
     }
+
+
+    private void cadastrarVagaFirebase(String area, String descricao, String remuneracao, String localidade, String email, String telefone, String dataInicio, String dataFim) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String anuncianteUid = currentUser.getUid();
+            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("vagas");
+            String vagaId = databaseRef.push().getKey();
+
+            // Obter o número de elementos no banco de dados
+            databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    long count = snapshot.getChildrenCount();
+                    String vagaId = String.valueOf(count);
+
+                    // Criar a instância de Vagas com o número de elementos + 1
+                    Vagas vaga = new Vagas((int) count, area, descricao, remuneracao, localidade, email, telefone, dataInicio, dataFim, anuncianteUid, true);
+
+                    databaseRef.child(vagaId).setValue(vaga)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(requireContext(), "Vaga cadastrada com sucesso", Toast.LENGTH_SHORT).show();
+                                    limparCampos();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(requireContext(), "Erro ao cadastrar a vaga", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(requireContext(), "Erro ao obter o número de elementos", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
 
 }

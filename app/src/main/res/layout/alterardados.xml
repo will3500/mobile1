@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".alterarDadosActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E0FAFF"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewCadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Altere seus dados"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"/>
+
+        <EditText
+            android:id="@+id/editTextNome"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Nome"
+            android:inputType="text"
+            android:layout_below="@+id/textViewCadastro"
+            android:layout_marginTop="32dp"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:layout_below="@+id/editTextNome"
+            android:layout_marginTop="32dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerConta"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/editTextEmail"
+            android:layout_marginTop="42dp"
+            android:entries="@array/tipo_conta"/>
+
+        <EditText
+            android:id="@+id/editTextSenha"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:layout_below="@+id/spinnerConta"
+            android:layout_marginTop="32dp"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutBotoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/editTextSenha"
+            android:layout_marginTop="24dp"
+            android:layout_centerHorizontal="true">
+
+
+
+
+            <Button
+                android:id="@+id/buttonVoltar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Voltar"
+                app:backgroundTint="@null"
+                android:textColor="#000000"
+                android:background="#2A8598"
+                android:layout_weight="1"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="5dp"/>
+
+            <Button
+                android:id="@+id/buttonLimpar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Limpar"
+                app:backgroundTint="@null"
+                android:textColor="#000000"
+                android:background="#2A8598"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="5dp"/>
+            <Button
+                android:id="@+id/buttonAlterar"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text="Alterar"
+                app:backgroundTint="@null"
+                android:textColor="#000000"
+                android:background="#2A8598"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="0dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayoutexcluirBotoes"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/linearLayoutBotoes"
+            android:layout_marginTop="24dp"
+            android:layout_centerHorizontal="true">
+
+
+
+
+            <Button
+                android:id="@+id/buttonExcluir"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Excluir conta"
+                app:backgroundTint="@null"
+                android:textColor="#FFFFFF"
+                android:background="#df0000"
+                android:layout_weight="1"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="5dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

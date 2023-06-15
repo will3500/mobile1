@@ -9,7 +9,22 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class CadastroActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText editTextNome;
     private EditText editTextEmail;
@@ -24,7 +39,6 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastrousuario);
-
 
         // Referenciando elementos da interface
         editTextNome = findViewById(R.id.editTextNome);
@@ -82,8 +96,7 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         }
 
         // Exibir mensagem com os valores obtidos
-        String mensagem = "Nome: " + nome + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de conta: " + tipoConta;
-        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+        cadastrarFirebase(email, senha, nome, tipoConta);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
@@ -95,6 +108,7 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         editTextEmail.setText("");
         editTextSenha.setText("");
         spinnerConta.setSelection(0);
+
     }
 
     @Override
@@ -108,4 +122,51 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> adapterView) {
         // Método vazio, não é necessário implementar
     }
+
+
+    private void cadastrarFirebase(String email, String senha, String nome, String tipoConta) {
+
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+
+        Map<String, Object> dadosUsuario = new HashMap<>();
+        dadosUsuario.put("tipoConta", tipoConta.toString());
+        dadosUsuario.put("nome", nome.toString());
+        dadosUsuario.put("email", email.toString());
+
+        firebaseAuth.createUserWithEmailAndPassword(email, senha)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        String uid = authResult.getUser().getUid();
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("usuarios");
+                        databaseReference.child(uid).setValue(dadosUsuario)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        // Cadastro realizado com sucesso
+                                        Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Tratar falha ao salvar os dados no banco de dados
+                                        Toast.makeText(getApplicationContext(), "Erro ao salvar os dados do usuário: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Tratar falha no cadastro do usuário
+                        Toast.makeText(getApplicationContext(), "Erro ao cadastrar o usuário: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+    }
+
 }
